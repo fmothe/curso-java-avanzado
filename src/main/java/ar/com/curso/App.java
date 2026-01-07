@@ -30,6 +30,9 @@ public class App{
         printList(names);
         printList(numbers);
 
+        sumNumbers(numbers);
+
+        addNumbers(numbers);
 
 
     }
@@ -42,7 +45,26 @@ public class App{
         for(Object item : list){
             System.out.println(item);
         }
+    }
 
+    //Si quisese modificar se tiene que hacer de la siguiente forma
+//    Para hacer una modificacion hay que usar super, sino no te permite hacer una covariancia
+    public static void sumNumbers(List<? extends Number> numbers){
+        double sum = 0;
+        for(Number number : numbers){
+            sum += number.doubleValue();
+        }
+        System.out.println(sum);
 
+    }
+
+    //super permite leer llamandolo con object.
+    public static void addNumbers(List<? super Integer> numbers){
+        numbers.add(5);
+        numbers.add(20);
+        numbers.add(30);
+
+        Object num = numbers.get(0);
+        System.out.println(num.getClass());
     }
 }
